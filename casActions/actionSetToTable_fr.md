@@ -10,6 +10,7 @@ builtins.actionSetToTable /
 
 
 ## Paramètres
+
 | Paramètre | Description |
 | --- | --- |
 | actionSet | Spécifie le nom du jeu d'actions défini par l'utilisateur à convertir. Le jeu d'actions est transformé de sa structure de définition en une table en mémoire. |
@@ -33,16 +34,18 @@ proc cas;
 run; quit;
 
 
-## Conversion simple d'un jeu d'actions en table
+## Exemples
+
+### Conversion simple d'un jeu d'actions en table
 Cet exemple de base convertit le jeu d'actions `myActionSet` précédemment défini en une table CAS nommée `myActionSetTable` dans la caslib `CASUSER`.
 sas
 proc cas; builtins.actionSetToTable / actionSet='myActionSet', casOut={caslib='CASUSER', name='myActionSetTable', replace=true}; run; quit;
 
-> Une nouvelle table CAS nommée `myActionSetTable` est créée dans la caslib `CASUSER`. Cette table contient la structure et les métadonnées du jeu d'actions `myActionSet`, incluant les détails de l'action `myEcho` et de ses paramètres.
+Une nouvelle table CAS nommée `myActionSetTable` est créée dans la caslib `CASUSER`. Cette table contient la structure et les métadonnées du jeu d'actions `myActionSet`, incluant les détails de l'action `myEcho` et de ses paramètres.
 
-## Conversion et promotion d'un jeu d'actions en table globale
+### Conversion et promotion d'un jeu d'actions en table globale
 Cet exemple convertit le jeu d'actions `myActionSet` en une table CAS, puis la promeut. Une table promue est accessible globalement par toutes les sessions CAS, ce qui est utile pour partager des définitions de jeux d'actions.
 sas
 proc cas; builtins.actionSetToTable / actionSet='myActionSet', casOut={caslib='CASUSER', name='myActionSetTable_Global', replace=true, promote=true}; run; quit;
 
-> Une table CAS globale nommée `myActionSetTable_Global` est créée. Elle est visible et utilisable par toutes les sessions CAS actives sur le serveur. La table contient la définition détaillée du jeu d'actions `myActionSet`.
+Une table CAS globale nommée `myActionSetTable_Global` est créée. Elle est visible et utilisable par toutes les sessions CAS actives sur le serveur. La table contient la définition détaillée du jeu d'actions `myActionSet`.

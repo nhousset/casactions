@@ -13,6 +13,7 @@ BUILTINS.ACTIONSETFROMTABLE<
 
 
 ## Paramètres
+
 | Paramètre | Description |
 | --- | --- |
 | `name` | Spécifie le nom à attribuer au jeu d'actions défini par l'utilisateur qui sera restauré. |
@@ -45,18 +46,18 @@ Cet exemple montre comment restaurer le jeu d'actions `myActionSet` à partir de
 sas
 proc cas; builtins.actionSetFromTable name='restoredActionSet' table={caslib='CASUSER', name='myActionSetTable'}; run; restoredActionSet.myEcho p1='Hello' p2='World'; run; quit;
 
-L'action `myEcho` du jeu d'actions restauré s'exécute et affiche les paramètres `p1` et `p2` dans le journal SAS, confirmant que la restauration a réussi.
+> L'action `myEcho` du jeu d'actions restauré s'exécute et affiche les paramètres `p1` et `p2` dans le journal SAS, confirmant que la restauration a réussi.
 
 ### Restauration et Vérification du Jeu d'Actions
 Cet exemple restaure le jeu d'actions et utilise ensuite l'action `actionSetInfo` pour vérifier que le nouveau jeu d'actions (`restoredSetVerify`) est bien chargé sur le serveur CAS. Cela permet de confirmer programmatiquement le succès de l'opération.
 sas
 proc cas; builtins.actionSetFromTable name='restoredSetVerify' table={caslib='CASUSER', name='myActionSetTable'}; run; builtins.actionSetInfo actionSet='restoredSetVerify'; run; quit;
 
-Le journal affichera les informations détaillées sur le jeu d'actions `restoredSetVerify`, y compris la liste des actions qu'il contient (dans ce cas, `myEcho`). Cela prouve que le jeu d'actions a été correctement restauré à partir de la table CAS.
+> Le journal affichera les informations détaillées sur le jeu d'actions `restoredSetVerify`, y compris la liste des actions qu'il contient (dans ce cas, `myEcho`). Cela prouve que le jeu d'actions a été correctement restauré à partir de la table CAS.
 
 ### Gestion des Conflits de Noms
 Si vous essayez de restaurer un jeu d'actions avec un nom qui existe déjà, l'opération échouera. Cet exemple illustre ce cas en restaurant une première fois, puis en tentant de le restaurer à nouveau avec le même nom, ce qui génère une erreur.
 sas
 proc cas; builtins.actionSetFromTable name='conflictTest' table={caslib='CASUSER', name='myActionSetTable'}; run; builtins.actionSetFromTable name='conflictTest' table={caslib='CASUSER', name='myActionSetTable'}; run; quit;
 
-La première action `actionSetFromTable` réussit. La seconde échoue et une erreur est consignée dans le journal SAS, indiquant que le jeu d'actions `conflictTest` est déjà chargé. Pour remplacer un jeu d'actions, il faut d'abord le supprimer avec `dropActionSet`.
+> La première action `actionSetFromTable` réussit. La seconde échoue et une erreur est consignée dans le journal SAS, indiquant que le jeu d'actions `conflictTest` est déjà chargé. Pour remplacer un jeu d'actions, il faut d'abord le supprimer avec `dropActionSet`.
