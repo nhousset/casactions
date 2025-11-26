@@ -35,7 +35,7 @@ quit;
 
 ### Lister les tables d'un utilisateur spécifique après avoir obtenu l'accès
 Après avoir obtenu les privilèges administratifs sur les caslibs personnelles, cet exemple illustre une utilisation concrète : lister les tables présentes dans la caslib personnelle (CASUSER) d'un utilisateur spécifique nommé 'user1'.
-sas
+```
 proc cas; 
    /* Étape 1: Assumer le rôle d'administrateur pour avoir le droit d'exécuter les actions suivantes. */ 
    accessControl.assumeRole / adminRole='superuser'; run; 
